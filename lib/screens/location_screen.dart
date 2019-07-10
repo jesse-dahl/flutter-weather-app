@@ -22,13 +22,15 @@ class _LocationScreenState extends State<LocationScreen> {
   void initState() {
     super.initState();
     
-    print(widget.locationWeather);
+    updateUI(widget.locationWeather);
   }
 
   void updateUI(dynamic weatherData) {
     temperature = weatherData['main']['temp'];
     condition = weatherData['weather'][0]['id'];
     cityName = weatherData['name'];
+
+    print(temperature);
   }
 
   @override
@@ -73,7 +75,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    '32°',
+                    '${temperature.round()}°',
                     style: kTempTextStyle,
                   ),
                   Text(
@@ -89,7 +91,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   
                   children: <Widget>[
                     Text(
-                      "It's 🍦 time in San Francisco!",
+                      "It's 🍦 time in $cityName",
                       //textAlign: TextAlign.right,
                       style: kMessageTextStyle,
                     ),

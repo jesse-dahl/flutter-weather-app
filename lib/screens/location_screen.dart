@@ -47,6 +47,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Padding(
                 padding: EdgeInsets.only(left: 15.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       '32°',
@@ -60,12 +61,18 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 15.0),
-                child: Text(
-                  "It's 🍦 time in San Francisco!",
-                  textAlign: TextAlign.right,
-                  style: kMessageTextStyle,
+                padding: EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "It's 🍦 time in San Francisco!",
+                      //textAlign: TextAlign.right,
+                      style: kMessageTextStyle,
+                    ),
+                  ],
                 ),
+                
               ),
             ],
           ),

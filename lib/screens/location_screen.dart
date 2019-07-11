@@ -93,6 +93,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   
                   children: <Widget>[
                     Text(
+                      
                       "${weatherModel.getMessage(temperature.toInt())} in $cityName",
                       //textAlign: TextAlign.right,
                       style: kMessageTextStyle,

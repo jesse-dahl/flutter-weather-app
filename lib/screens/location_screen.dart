@@ -18,6 +18,7 @@ class _LocationScreenState extends State<LocationScreen> {
   double temperature;
   int condition;
   String cityName;
+  String weatherMessage;
 
   @override
   void initState() {
@@ -27,10 +28,13 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   void updateUI(dynamic weatherData) {
-    temperature = weatherData['main']['temp'];
-    condition = weatherData['weather'][0]['id'];
-    cityName = weatherData['name'];
-
+    setState(() {
+      temperature = weatherData['main']['temp'];
+      condition = weatherData['weather'][0]['id'];
+      cityName = weatherData['name'];
+      weatherMessage = weatherModel.getMessage(temperature.toInt());
+    });
+    
     print(temperature);
   }
   WeatherModel weatherModel = WeatherModel();
@@ -94,7 +98,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   children: <Widget>[
                     Text(
                       
-                      "${weatherModel.getMessage(temperature.toInt())} in $cityName",
+                      "$weatherMessage in $cityName",
                       //textAlign: TextAlign.right,
                       style: kMessageTextStyle,
                     ),

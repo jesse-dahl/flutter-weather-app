@@ -19,6 +19,7 @@ class _LocationScreenState extends State<LocationScreen> {
   int condition;
   String cityName;
   String weatherMessage;
+  String weatherIcon;
   WeatherModel weatherModel = WeatherModel();
 
   @override
@@ -30,10 +31,18 @@ class _LocationScreenState extends State<LocationScreen> {
 
   void updateUI(dynamic weatherData) {
     setState(() {
+      if (weatherData == null) {
+        temperature = 0;
+        weatherMessage = 'Unable to get weather data';
+        weatherIcon = 'Error';
+        cityName = '';
+        return;
+      }
       temperature = weatherData['main']['temp'];
       condition = weatherData['weather'][0]['id'];
       cityName = weatherData['name'];
       weatherMessage = weatherModel.getMessage(temperature.toInt());
+      weatherIcon = weatherModel.getWeatherIcon(condition);
     });
 
     print(temperature);
@@ -88,7 +97,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     style: kTempTextStyle,
                   ),
                   Text(
-                    weatherModel.getWeatherIcon(condition),
+                    weatherIcon,
                     style: kConditionTextStyle,
                   ),
                 ],
